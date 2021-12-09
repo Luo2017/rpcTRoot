@@ -21,6 +21,7 @@
 	<modules>
 		<module>rpcProvider</module>
 		<module>rpcConsumer</module>
+		<module>rpcProtocols</module>
 	</modules>
 
 	<properties>
@@ -42,6 +43,12 @@
 			<dependency>
 				<groupId>com.rpcT</groupId>
 				<artifactId>rpcConsumer</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.rpcT</groupId>
+				<artifactId>rpcProtocol</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 
