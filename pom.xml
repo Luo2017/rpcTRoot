@@ -48,7 +48,7 @@
 
 			<dependency>
 				<groupId>com.rpcT</groupId>
-				<artifactId>rpcProtocol</artifactId>
+				<artifactId>rpcProtocols</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 
