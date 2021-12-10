@@ -12,6 +12,13 @@
     <artifactId>rpcProtocols</artifactId>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.rpcT</groupId>
+            <artifactId>rpcCore</artifactId>
+        </dependency>
+
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

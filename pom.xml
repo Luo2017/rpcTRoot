@@ -22,6 +22,7 @@
 		<module>rpcProvider</module>
 		<module>rpcConsumer</module>
 		<module>rpcProtocols</module>
+		<module>rpcCore</module>
 	</modules>
 
 	<properties>
@@ -52,7 +53,19 @@
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 
+			<dependency>
+				<groupId>com.rpcT</groupId>
+				<artifactId>rpcCore</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+
 			<!-- 下面的就是项目依赖的包，也是最主要的，写了相应版本，子类引用继承 -->
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-all</artifactId>
+				<version>4.1.42.Final</version>
+			</dependency>
+
 			<dependency>
 				<groupId>org.apache.curator</groupId>
 				<artifactId>curator-framework</artifactId>

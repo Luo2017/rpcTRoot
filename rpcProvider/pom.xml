@@ -39,6 +39,10 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.rpcT</groupId>
+            <artifactId>rpcCore</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
