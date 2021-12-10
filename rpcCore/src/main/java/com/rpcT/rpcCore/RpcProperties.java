@@ -1,4 +1,4 @@
-package com.com.rpcT.rpcCore;
+package com.rpcT.rpcCore;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -11,7 +11,7 @@ public class RpcProperties {
 
     private int servicePort;
 
-    private String registryAddr;
+    private String registryAddress;
 
     private String registryType;
 }

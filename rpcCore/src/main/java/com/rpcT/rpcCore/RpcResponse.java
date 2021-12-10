@@ -1,4 +1,4 @@
-package com.com.rpcT.rpcCore;
+package com.rpcT.rpcCore;
 
 
 import lombok.Data;

@@ -12,7 +12,9 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 
+// 实现了类型的实例容器注入
 @Component
+
 public @interface RpcService {
 
     Class<?> serviceInterface() default Object.class;

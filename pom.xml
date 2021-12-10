@@ -23,7 +23,8 @@
 		<module>rpcConsumer</module>
 		<module>rpcProtocols</module>
 		<module>rpcCore</module>
-	</modules>
+        <module>rpcFacade</module>
+    </modules>
 
 	<properties>
 		<java.version>11</java.version>
@@ -56,6 +57,12 @@
 			<dependency>
 				<groupId>com.rpcT</groupId>
 				<artifactId>rpcCore</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.rpcT</groupId>
+				<artifactId>rpcFacade</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 
