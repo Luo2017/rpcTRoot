@@ -13,6 +13,7 @@ import java.lang.annotation.Target;
 @Autowired // 这是最主要的作用
 public @interface RpcReference {
 
+    // 在 @RpcService 注解中也有 serviceVersion 这个注解
     String serviceVersion() default "1.0";
 
     String registryType() default "ZOOKEEPER";

@@ -24,6 +24,7 @@
 		<module>rpcProtocols</module>
 		<module>rpcCore</module>
         <module>rpcFacade</module>
+        <module>rpcRegistry</module>
     </modules>
 
 	<properties>
@@ -63,6 +64,12 @@
 			<dependency>
 				<groupId>com.rpcT</groupId>
 				<artifactId>rpcFacade</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.rpcT</groupId>
+				<artifactId>rpcRegistry</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 

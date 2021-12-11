@@ -3,6 +3,7 @@ package com.rpct.rpcconsumer.controller;
 
 import com.rpcT.facade.HelloFacade;
 import com.rpct.rpcconsumer.annotation.RpcReference;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,8 @@ public class HelloController {
     @RpcReference(serviceVersion = "1.0.0", timeout = 3000)
     private HelloFacade helloFacade;
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    //@RequestMapping(value = "", method = RequestMethod.GET)
+    @GetMapping(value = "/hello")
     public String sayHello() {
         // 函数名字是随便起的
         return helloFacade.hello("rpcT");
