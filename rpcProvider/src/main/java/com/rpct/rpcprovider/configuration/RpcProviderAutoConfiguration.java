@@ -1,7 +1,11 @@
 package com.rpct.rpcprovider.configuration;
 
 
+import com.rpcT.registry.RegistryFactory;
+import com.rpcT.registry.RegistryService;
+import com.rpcT.registry.RegistryType;
 import com.rpcT.rpcCore.RpcProperties;
+import com.rpct.rpcprovider.core.RpcProvider;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,5 +21,11 @@ public class RpcProviderAutoConfiguration {
     @Resource
     private RpcProperties rpcProperties;
 
+    @Bean
+    public RpcProvider init() throws Exception {
+        RegistryType type = RegistryType.valueOf(rpcProperties.getRegistryType());
+        RegistryService registryService = RegistryFactory.getInstance(rpcProperties.getRegistryAddress(),type);
+        return new RpcProvider(rpcProperties.getServicePort(), registryService);
+    }
 
 }

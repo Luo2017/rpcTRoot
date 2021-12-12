@@ -2,6 +2,7 @@ package com.rpcT.rpcProtocols.handler;
 
 import com.rpcT.rpcCore.RpcRequest;
 import com.rpcT.rpcCore.RpcResponse;
+import com.rpcT.rpcCore.RpcServiceHelper;
 import com.rpcT.rpcProtocols.protocol.MsgHeader;
 import com.rpcT.rpcProtocols.protocol.MsgStatus;
 import com.rpcT.rpcProtocols.protocol.MsgType;
@@ -9,6 +10,7 @@ import com.rpcT.rpcProtocols.protocol.RpcTProtocol;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cglib.reflect.FastClass;
 
 import java.util.Map;
 
@@ -61,7 +63,18 @@ public class RpcRequestHandler extends SimpleChannelInboundHandler<RpcTProtocol<
 
     // 返回的是具体类型，动态绑定
     private Object handle(RpcRequest request) throws Throwable {
-        // TODO
-        return request;
+        String serviceKey = RpcServiceHelper.buildServiceKey(request.getClassName(), request.getServiceVersion());
+        Object serviceBean = rpcServiceMap.get(serviceKey);
+        if (serviceBean == null) {
+            throw new RuntimeException(String.format("service not exist: %s, %s", request.getClassName(), request.getServiceVersion()));
+        }
+        Class<?> serviceClass = serviceBean.getClass();
+        String methodName = request.getMethodName();
+        Class<?>[] parameterTypes = request.getParameterTypes();
+        Object[] parameters = request.getParams();
+        // spring 中的 cglib 提供，not for aop，比反射性能更好
+        FastClass fastClass = FastClass.create(serviceClass);
+        int methodIndex = fastClass.getIndex(methodName, parameterTypes);
+        return fastClass.invoke(methodIndex, serviceBean, parameters);
     }
 }
