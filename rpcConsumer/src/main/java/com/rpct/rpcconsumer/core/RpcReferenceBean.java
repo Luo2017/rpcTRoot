@@ -7,7 +7,7 @@ import com.rpcT.registry.RegistryType;
 import org.springframework.beans.factory.FactoryBean;
 
 import java.lang.reflect.Proxy;
-import java.rmi.registry.Registry;
+
 
 // 不用 @Data
 public class RpcReferenceBean implements FactoryBean<Object> {

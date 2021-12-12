@@ -72,12 +72,16 @@ public class RpcConsumerPostProcessor implements ApplicationContextAware, BeanCl
     }
 
     private void parseRpcReference(Field field) {
+        // annotation 对于每个注入的 field 都是不同的
         RpcReference annotation = AnnotationUtils.getAnnotation(field, RpcReference.class);//Utils 用的是 spring 的
         if (annotation != null) {
+            // 有 RpcReferenceBean 的所有属性和方法，并设置了对应变量的值
             BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(RpcReferenceBean.class);
             builder.setInitMethodName(RpcConstants.INIT_METHOD_NAME); // 子项的是 RpcReferenceBean 的 init() 方法，我们初始化了代理对象
-            builder.addPropertyValue("interfaceClass", field.getType()); // field 对应接口
-            builder.addPropertyValue("serviceVersion", annotation.serviceVersion());
+            // 下面的 name 要和 ReferenceBean 的成员变量的名称一致
+            // addPropertyValue 方法首先会找 RpcReferenceBean 有没有对应名称的变量，如果有就会直接进行赋值
+            builder.addPropertyValue("interfaceClass", field.getType()); // field 对应被注解的接口
+            builder.addPropertyValue("serviceVersion", annotation.serviceVersion()); // 这个会调用RpcReferenceBean 的 set 方法对成员变量进行赋值
             builder.addPropertyValue("registryAddress", annotation.registryAddress());
             builder.addPropertyValue("registryType", annotation.registryType());
             builder.addPropertyValue("timeout", annotation.timeout());
