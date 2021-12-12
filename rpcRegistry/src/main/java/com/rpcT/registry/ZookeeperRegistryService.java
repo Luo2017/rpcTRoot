@@ -64,7 +64,7 @@ public class ZookeeperRegistryService implements RegistryService{
 
     @Override
     public ServiceMeta discovery(String serviceName, int invokerHashCode) throws Exception {
-        // 因为我们调用 register 方法时写了 name ，所以可以按照 name 来查询
+        // 因为我们调用 register 方法时写了 .name ，所以可以按照 name 来查询
         Collection<ServiceInstance<ServiceMeta>> serviceInstances = serviceDiscovery.queryForInstances(serviceName);
         ServiceInstance<ServiceMeta> instance = new ZKConsistentHashLoadBalancer().select((List<ServiceInstance<ServiceMeta>>) serviceInstances, invokerHashCode);
         if (instance != null) {
