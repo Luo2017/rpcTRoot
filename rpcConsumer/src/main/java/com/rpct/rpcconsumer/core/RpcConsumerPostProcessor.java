@@ -59,16 +59,17 @@ public class RpcConsumerPostProcessor implements ApplicationContextAware, BeanCl
                 Class<?> clz = ClassUtils.resolveClassName(beanClassName, this.classLoader);
                 ReflectionUtils.doWithFields(clz, this::parseRpcReference);//因为我们的 RpcReference 是对属性 field 进行注解，所以要对 clz 带有这个注解的属性进行处理
             }
-            // 这个 registry 是 spring 容器的，完成
-            BeanDefinitionRegistry registry = (BeanDefinitionRegistry) beanFactory;
-            this.rpcRefBeanDefinitions.forEach((beanName, beanDefinition1) -> {
-                if (context.containsBean(beanName)) {
-                    throw new IllegalArgumentException("spring context already has a bean named " + beanName);
-                }
-                registry.registerBeanDefinition(beanName, rpcRefBeanDefinitions.get(beanName)); // value 用 beanDefinition 也可以表示
-                log.info("registered RpcReferenceBean {} success.", beanName);
-            });
         }
+        // 这个 registry 是 spring 容器的，完成
+        // 注意下面的这段不能在 for 循环中，调 bug 找了很长时间
+        BeanDefinitionRegistry registry = (BeanDefinitionRegistry) beanFactory;
+        this.rpcRefBeanDefinitions.forEach((beanName, beanDefinition1) -> {
+            if (context.containsBean(beanName)) {
+                throw new IllegalArgumentException("spring context already has a bean named " + beanName);
+            }
+            registry.registerBeanDefinition(beanName, rpcRefBeanDefinitions.get(beanName)); // value 用 beanDefinition 也可以表示
+            log.info("registered RpcReferenceBean {} success.", beanName);
+        });
     }
 
     private void parseRpcReference(Field field) {
