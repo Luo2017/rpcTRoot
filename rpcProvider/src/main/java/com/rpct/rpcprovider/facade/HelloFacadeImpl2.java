@@ -4,7 +4,8 @@ import com.rpcT.facade.HelloFacade;
 import com.rpct.rpcprovider.annotation.RpcService;
 
 // 同样的名字注册到同一个结点下
-@RpcService(serviceInterface = HelloFacade.class, serviceVersion = "2.0.0")
+// 不注册
+//@RpcService(serviceInterface = HelloFacade.class, serviceVersion = "2.0.0")
 public class HelloFacadeImpl2 implements HelloFacade {
     @Override
     public String hello(String name) {

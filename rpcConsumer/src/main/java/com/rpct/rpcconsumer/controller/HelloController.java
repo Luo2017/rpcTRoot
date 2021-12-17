@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 // RestController 是 ResponseBody 和 Controller 的合体
 // 没有 ResponseBody，String 类型是到对应字符串的地址
-@SuppressWarnings("ALL")
+
 @RestController
 public class HelloController {
 
@@ -21,10 +21,11 @@ public class HelloController {
     @RpcReference(serviceVersion = "1.0.0", timeout = 3000)
     private HelloFacade helloFacade;
 
-//    // 会生成不同的代理
+//    // 下面会报错，因为会发生注册 beanName 与上面重名的情况
 //    @RpcReference(serviceVersion = "2.0.0", timeout = 3000)
 //    private HelloFacade helloFacade2;
 
+    @SuppressWarnings({"SpringJavaInjectionPointsAutowiringInspection", "SpringJavaAutowiredFieldsWarningInspection"})
     @RpcReference(serviceVersion = "1.0.0", timeout = 3000)
     private HiFacade hiFacade;
 
@@ -35,11 +36,6 @@ public class HelloController {
         return helloFacade.hello("rpcT");
     }
 
-//    @GetMapping(value = "/hello2")
-//    public String sayHello2() {
-//        return helloFacade2.hello("rpcT");
-//    }
-//
     @GetMapping(value = "/hi")
     public  String sayHi() {
         return hiFacade.hi("rpcT");
