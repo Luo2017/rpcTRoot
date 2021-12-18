@@ -17,21 +17,26 @@ netty 通信，动态代理，zookeeper 负载均衡，序列化是项目的重�
 首先启动本地的zookeeper服务端zkServer，注意地址要和项目中 application.properties 文件中定义的保持一致：
 
 ---
+
 <img src="./imgs/img01.png" width = "70%" height = "70%" alt="" align=center />
 
 ---
 接着先后启动 rpcProvider 和 rpcConsumer Application：
 
 ---
+
 <img src="./imgs/img02.png" width = "70%" height = "70%" alt="" align=center />
 
 ---
+
 在浏览器输入地址，访问定义在 rpcConsumer 中的 server.port 以及提供的服务地址：
 
 ---
+
 <img src="./imgs/img03.png" width = "70%" height = "70%" alt="" align=center />
 
 ---
+
 <img src="./imgs/img04.png" width = "70%" height = "70%" alt="" align=center />
 
 ---
